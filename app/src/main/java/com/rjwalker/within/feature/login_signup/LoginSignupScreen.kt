@@ -12,6 +12,9 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -23,11 +26,33 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.rjwalker.within.R
 
 @Composable
-fun LoginSignUpScreen() {
+internal fun LoginSignUpRoute(
+    modifier: Modifier = Modifier,
+    viewModel: LoginSignupViewModel = hiltViewModel(),
+) {
+
+    LoginSignUpScreen(
+        onLogin = viewModel::login,
+        onSignup = viewModel::signup,
+        modifier = modifier
+    )
+}
+
+
+@Composable
+fun LoginSignUpScreen(
+    onLogin: (String, String) -> Unit,
+    onSignup: (String, String) -> Unit,
+    modifier: Modifier = Modifier,
+) {
     var isLogin by remember { mutableStateOf(true) }
+    val email = remember { mutableStateOf("") }
+    val password = remember { mutableStateOf("") }
+
 
     Column(
         modifier = Modifier
@@ -37,30 +62,27 @@ fun LoginSignUpScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        var email by remember { mutableStateOf("") }
-        var password by remember { mutableStateOf("") }
-
         Text(text = if (isLogin) stringResource(R.string.login) else stringResource(R.string.signup) )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(
-            value = email,
-            onValueChange = { email = it },
+            value = email.value,
+            onValueChange = { email.value = it },
             label = { Text(text = stringResource(id = R.string.email)) },
         )
 
         Spacer(modifier = Modifier.height(8.dp))
 
         OutlinedTextField(
-            value = password,
-            onValueChange = { password = it },
+            value = password.value,
+            onValueChange = { password.value = it },
             label = { Text(text = stringResource(id = R.string.password)) },
             visualTransformation = PasswordVisualTransformation()
         )
 
         Button(onClick = {
-            // TODO: Perform login or signup logic here
+            if (isLogin) onLogin(email.value, password.value) else onSignup(email.value, password.value)
         }) {
             Text(text = if (isLogin) stringResource(R.string.login) else stringResource(R.string.signup))
         }
@@ -76,5 +98,8 @@ fun LoginSignUpScreen() {
 @Preview(showSystemUi = true)
 @Composable
 fun LoginSignUpScreenPreview() {
-    LoginSignUpScreen()
+    LoginSignUpScreen(
+        onLogin = { _, _ -> },
+        onSignup = { _, _ -> },
+    )
 }
