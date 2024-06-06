@@ -12,8 +12,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,16 +26,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.rjwalker.within.R
+import com.rjwalker.within.network.Result
 
 @Composable
 internal fun LoginSignUpRoute(
     modifier: Modifier = Modifier,
     viewModel: LoginSignupViewModel = hiltViewModel(),
 ) {
+    val authResult by viewModel.authResult.collectAsState()
 
     LoginSignUpScreen(
         onLogin = viewModel::login,
         onSignup = viewModel::signup,
+        authResult = authResult,
         modifier = modifier
     )
 }
@@ -47,12 +48,26 @@ internal fun LoginSignUpRoute(
 fun LoginSignUpScreen(
     onLogin: (String, String) -> Unit,
     onSignup: (String, String) -> Unit,
+    authResult: Result<Unit>,
     modifier: Modifier = Modifier,
 ) {
+
     var isLogin by remember { mutableStateOf(true) }
     val email = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
+    var isLoading by remember { mutableStateOf(false) }
 
+    when (authResult) {
+        is Result.Success -> {
+            isLoading = false
+        }
+        is Result.Error -> {
+            isLoading = false
+        }
+        is Result.Loading -> {
+            isLoading = true
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -101,5 +116,6 @@ fun LoginSignUpScreenPreview() {
     LoginSignUpScreen(
         onLogin = { _, _ -> },
         onSignup = { _, _ -> },
+        authResult = Result.Success(Unit)
     )
 }
