@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Within</string>
     <string name="login">Login</string>
+    <string name="home">Home</string>
+    <string name="ai">AI</string>
+    <string name="profile">Profile</string>
     <string name="signup">Sign up</string>"
     <string name="password">Password</string>
     <string name="email">Email</string>

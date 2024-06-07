@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "670473906714",
+    "project_id": "within-2b20a",
+    "storage_bucket": "within-2b20a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670473906714:android:7d3abd84b0b4cf2363ffa3",
+        "android_client_info": {
+          "package_name": "com.rjwalker.within"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADOOwXnlwnixvM7obODSMBn9cqpBfe_XM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
