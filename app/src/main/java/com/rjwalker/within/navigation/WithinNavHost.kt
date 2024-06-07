@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.rjwalker.within.feature.home.HomeScreen
+import com.rjwalker.within.feature.login_signup.LoginSignUpScreen
 import com.rjwalker.within.feature.profile.ProfileScreen
 import com.rjwalker.within.feature.settings.SettingsScreen
 
@@ -23,5 +24,6 @@ fun WithinNavHost(
         composable(Screen.Home.route) { HomeScreen() }
         composable(Screen.Profile.route) { ProfileScreen() }
         composable(Screen.Settings.route) { SettingsScreen() }
+        composable(Screen.Login.route) { LoginSignUpScreen() }
     }
 }
