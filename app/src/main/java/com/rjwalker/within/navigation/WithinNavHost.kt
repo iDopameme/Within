@@ -3,27 +3,27 @@ package com.rjwalker.within.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.rjwalker.within.feature.home.HomeScreen
-import com.rjwalker.within.feature.login_signup.LoginSignUpScreen
-import com.rjwalker.within.feature.profile.ProfileScreen
-import com.rjwalker.within.feature.settings.SettingsScreen
+import com.rjwalker.within.feature.home.navigation.homeScreen
+import com.rjwalker.within.feature.login_signup.navigation.LOGIN_SIGNUP_ROUTE
+import com.rjwalker.within.feature.login_signup.navigation.loginSignupScreen
+import com.rjwalker.within.feature.profile.navigation.profileScreen
+import com.rjwalker.within.ui.WithinAppState
 
 @Composable
 fun WithinNavHost(
-    modifier: Modifier = Modifier
+    withingAppState: WithinAppState,
+    modifier: Modifier = Modifier,
+    startDestination: String = LOGIN_SIGNUP_ROUTE,
 ) {
-    val navController = rememberNavController()
+    val navController = withingAppState.navController
 
     NavHost(
         navController = navController,
-        startDestination = Screen.Home.route,
+        startDestination = startDestination,
         modifier = modifier
     ) {
-        composable(Screen.Home.route) { HomeScreen() }
-        composable(Screen.Profile.route) { ProfileScreen() }
-        composable(Screen.Settings.route) { SettingsScreen() }
-        composable(Screen.Login.route) { LoginSignUpScreen() }
+        loginSignupScreen()
+        homeScreen()
+        profileScreen()
     }
 }

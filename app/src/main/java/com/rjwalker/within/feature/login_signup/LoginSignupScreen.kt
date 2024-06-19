@@ -1,5 +1,7 @@
 package com.rjwalker.within.feature.login_signup
 
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,6 +30,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.rjwalker.within.R
 import com.rjwalker.within.network.Result
+
+
+private const val TAG = "LoginSignUpRoute"
 
 @Composable
 internal fun LoginSignUpRoute(
@@ -51,6 +57,7 @@ fun LoginSignUpScreen(
     authResult: Result<Unit>,
     modifier: Modifier = Modifier,
 ) {
+    val context = LocalContext.current
 
     var isLogin by remember { mutableStateOf(true) }
     val email = remember { mutableStateOf("") }
@@ -60,9 +67,12 @@ fun LoginSignUpScreen(
     when (authResult) {
         is Result.Success -> {
             isLoading = false
+            Log.d(TAG, "LoginSignUpScreen: Success")
+            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
         }
         is Result.Error -> {
             isLoading = false
+            Toast.makeText(context, "ERROR! ${authResult.exception}", Toast.LENGTH_SHORT).show()
         }
         is Result.Loading -> {
             isLoading = true
