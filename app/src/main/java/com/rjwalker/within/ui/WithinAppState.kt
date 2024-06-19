@@ -1,10 +1,13 @@
 package com.rjwalker.within.ui
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavController
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import androidx.tracing.trace
 import com.rjwalker.within.data.util.NetworkMonitor
@@ -22,8 +25,31 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.datetime.TimeZone
 
+
+@Composable
+fun rememberWithinAppState(
+    networkMonitor: NetworkMonitor,
+    timeZoneMonitor: TimeZoneMonitor,
+    coroutineScope: CoroutineScope = rememberCoroutineScope(),
+    navController: NavHostController = rememberNavController(),
+): WithinAppState {
+    return remember(
+        navController,
+        coroutineScope,
+        networkMonitor,
+        timeZoneMonitor
+    ) {
+        WithinAppState(
+            navController = navController,
+            coroutineScope = coroutineScope,
+            networkMonitor = networkMonitor,
+            timeZoneMonitor = timeZoneMonitor
+        )
+    }
+}
+
 class WithinAppState (
-    val navController: NavController,
+    val navController: NavHostController,
     coroutineScope: CoroutineScope,
     networkMonitor: NetworkMonitor,
     timeZoneMonitor: TimeZoneMonitor

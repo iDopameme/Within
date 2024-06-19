@@ -11,5 +11,6 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="already_have_account">Already have an account?</string>
     <string name="needs_to_signup">Need to signup?</string>
+    <string name="not_connected">You are not connected to the internet</string>
 
 </resources>
