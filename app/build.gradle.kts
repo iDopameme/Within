@@ -57,6 +57,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.material3.adaptive.navigation.suite.android)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.ui.test.junit4)
