@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.rjwalker.within.data.model.UserData
 
 class MainActivityViewModel : ViewModel() {
-
+//    val uiState: StateFlow<MainActivityUiState> = user
 }
 
 sealed interface MainActivityUiState {

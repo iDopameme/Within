@@ -14,8 +14,10 @@ import com.rjwalker.within.data.util.TimeZoneMonitor
 import com.rjwalker.within.design.theme.WithinTheme
 import com.rjwalker.within.ui.WithinApp
 import com.rjwalker.within.ui.rememberWithinAppState
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     @Inject
@@ -32,7 +34,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             val appState = rememberWithinAppState(
                 networkMonitor = networkMonitor,
-                timeZoneMonitor = timeZoneMonitor)
+                timeZoneMonitor = timeZoneMonitor
+            )
 
 
             val currentTimeZone by appState.currentTimeZone.collectAsStateWithLifecycle()
