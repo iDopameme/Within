@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.WindowAdaptiveInfo
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
@@ -38,7 +39,10 @@ fun WithinApp(
     }
 
     WithinApp(
-        appState, modifier
+        appState = appState,
+        snackBarHostState = snackBarHostState,
+        modifier = modifier,
+        windowAdaptiveInfo = windowAdaptiveInfo
     )
 }
 
@@ -46,8 +50,9 @@ fun WithinApp(
 @Composable
 internal fun WithinApp(
     appState: WithinAppState,
-    snackbarHostState: SnackbarHostState,
+    snackBarHostState: SnackbarHostState,
     modifier: Modifier = Modifier,
+    windowAdaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfo(),
 ) {
     val currentDestination = appState.currentDestination
 
@@ -58,7 +63,7 @@ internal fun WithinApp(
                 .padding(padding)
         ) {
             val destination = appState.currentTopLevelDestination
-
+            Text(text = "Hello World!")
         }
     }
 }

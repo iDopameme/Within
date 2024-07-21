@@ -6,8 +6,6 @@ import android.net.ConnectivityManager.NetworkCallback
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
-import android.os.Build
-import android.os.Build.VERSION_CODES
 import androidx.core.content.getSystemService
 import androidx.tracing.trace
 import com.rjwalker.within.network.Dispatcher
@@ -66,12 +64,10 @@ internal class ConnectivityManagerNetworkMonitor @Inject constructor(
         .flowOn(ioDispatcher)
         .conflate()
 
-    private fun ConnectivityManager.isCurrentlyConnected() = when {
-        Build.VERSION.SDK_INT >= VERSION_CODES.M ->
-            activeNetwork
-                ?.let(::getNetworkCapabilities)
-                ?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
 
-        else -> activeNetworkInfo?.isConnected
-    } ?: false
+    private fun ConnectivityManager.isCurrentlyConnected() =
+        activeNetwork
+            ?.let(::getNetworkCapabilities)
+            ?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) ?: false
+
 }
