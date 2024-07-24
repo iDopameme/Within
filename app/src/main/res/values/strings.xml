@@ -2,6 +2,8 @@
     <string name="app_name">Within</string>
     <string name="login">Login</string>
     <string name="home">Home</string>
+    <string name="journal">Journal</string>
+    <string name="tasks">Tasks</string>
     <string name="ai">AI</string>
     <string name="profile">Profile</string>
     <string name="signup">Sign up</string>"
@@ -14,5 +16,8 @@
     <string name="already_have_account">Already have an account?</string>
     <string name="needs_to_signup">Need to signup?</string>
     <string name="not_connected">You are not connected to the internet</string>
+    <string name="welcome_title">Welcome to Within!</string>"
+    <string name="welcome_body_1">This app\'s main purpose is to become a productive tool for all to achieve any goal they set in life.</string>
+    <string name="welcome_body_2">We accomplish this by creating supportive tools &amp; a supportive community where everyone can share their ideas to become the best version of themselves and to become the person of their dreams!</string>
 
 </resources>
