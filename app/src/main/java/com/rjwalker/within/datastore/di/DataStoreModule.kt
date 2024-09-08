@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.DataStoreFactory
 import androidx.datastore.dataStoreFile
+import com.rjwalker.within.datastore.UserPreferences
 import com.rjwalker.within.datastore.UserPreferencesSerializer
-import com.rjwalker.within.proto.UserPreferences
 import com.rjwalker.within.network.Dispatcher
 import com.rjwalker.within.network.WithinDispatchers.IO
 import com.rjwalker.within.network.di.ApplicationScope
@@ -33,10 +33,8 @@ object DataStoreModule {
         DataStoreFactory.create(
             serializer = userPreferencesSerializer,
             scope = CoroutineScope(scope.coroutineContext + ioDispatcher),
-            migrations = listOf(
-
-            )
         ) {
-            context.dataStoreFile("user_preferences.pb")
+            context.dataStoreFile("user_prefs.pb")
         }
+
 }

@@ -1,3 +1,6 @@
+import org.gradle.configurationcache.extensions.capitalized
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -5,6 +8,18 @@ plugins {
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.google.services)
+    alias(libs.plugins.google.protobuf)
+}
+
+androidComponents {
+    onVariants(selector().all()) { variant ->
+        afterEvaluate {
+            val capName = variant.name.capitalized()
+            tasks.getByName<KotlinCompile>("ksp${capName}Kotlin") {
+                setSource(tasks.getByName("generate${capName}Proto").outputs)
+            }
+        }
+    }
 }
 
 android {
@@ -56,6 +71,20 @@ android {
     }
 }
 
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:4.26.1"
+    }
+
+    generateProtoTasks {
+        all().forEach { task ->
+            task.builtins {
+                create("java")
+            }
+        }
+    }
+}
+
 dependencies {
     implementation(libs.androidx.material3.adaptive.navigation.suite.android)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -84,12 +113,23 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.dagger.hilt.android)
+    implementation(libs.dagger.hilt.testing)
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.auth)
+    implementation(libs.google.protobuf.java)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.kotlinx.datetime)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlin.stdlib)
     implementation(platform(libs.androidx.compose.bom))
     implementation(platform(libs.firebase.bom))
+    ksp(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.compiler)
+    testImplementation(libs.mockk)
+    testImplementation(libs.mockk.android)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.kotlin.test)
     testImplementation(libs.junit)
+    testImplementation(libs.app.cash.turbine)
 }
