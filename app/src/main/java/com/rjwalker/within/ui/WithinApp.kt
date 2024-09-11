@@ -21,7 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.rjwalker.within.R
-import com.rjwalker.within.design.components.WelcomeComponent
 import com.rjwalker.within.design.components.WithinBackground
 import com.rjwalker.within.design.components.WithinNavigationBar
 import com.rjwalker.within.design.components.WithinNavigationBarItem
@@ -121,7 +120,7 @@ internal fun WithinApp(
             val destination = appState.currentTopLevelDestination
 
 
-            WelcomeComponent(isUserNew = true)
+            //WelcomeComponent(isUserNew = true)
         }
     }
 }

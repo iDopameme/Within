@@ -151,10 +151,6 @@ fun WithinNavigationSuiteScaffold(
     }
 }
 
-//@ThemePreviews
-//@Composable
-
-
 class WithinNavigationSuiteScope internal constructor(
     private val navigationSuiteScope: NavigationSuiteScope,
     private val navigationSuiteItemColors: NavigationSuiteItemColors

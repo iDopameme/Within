@@ -12,6 +12,7 @@
     <string name="back">Back</string>
     <string name="email">Email</string>
     <string name="username">Username</string>
+    <string name="todays_agenda">Today\'s Agenda:</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="already_have_account">Already have an account?</string>
     <string name="needs_to_signup">Need to signup?</string>
