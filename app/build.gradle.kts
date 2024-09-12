@@ -88,6 +88,7 @@ protobuf {
 dependencies {
 
     // Android Test Dependencies
+    androidTestImplementation(libs.testing)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.ui.test.junit4)

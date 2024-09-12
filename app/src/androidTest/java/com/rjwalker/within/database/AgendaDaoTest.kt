@@ -6,16 +6,17 @@ import androidx.test.core.app.ApplicationProvider
 import com.rjwalker.within.database.dao.AgendaDao
 import com.rjwalker.within.database.model.AgendaEntity
 import kotlinx.coroutines.test.runTest
-import kotlin.test.AfterTest
-import kotlin.test.BeforeTest
-import kotlin.test.Test
+import org.junit.After
+import org.junit.Assert.assertEquals
+import org.junit.Before
+import org.junit.Test
 
 class AgendaDaoTest {
 
     private lateinit var agendaDao: AgendaDao
     private lateinit var db: WithinDatabase
 
-    @BeforeTest
+    @Before
     fun createDb() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         db = Room.inMemoryDatabaseBuilder(
@@ -25,7 +26,7 @@ class AgendaDaoTest {
         agendaDao = db.agendaDao()
     }
 
-    @AfterTest
+    @After
     fun closeDb() = db.close()
 
     @Test
@@ -37,6 +38,18 @@ class AgendaDaoTest {
             testAgendaEntity(isCompleted = false),
             testAgendaEntity(isCompleted = false),
         )
+
+        agendaDao.insertAllAgenda(agendaEntities)
+
+        val savedAgendaEntities = agendaDao.getAllAgenda()
+
+        TODO("Not yet implemented - Will Complete in future branch")
+
+//        assertEquals(agendaEntities.size, savedAgendaEntities.size)
+//
+//        val completedAgendaEntities = savedAgendaEntities.filter { it.isCompleted }
+//
+//        assertEquals(2, completedAgendaEntities.size)
     }
 
 }

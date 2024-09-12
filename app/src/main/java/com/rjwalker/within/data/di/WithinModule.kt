@@ -1,5 +1,7 @@
 package com.rjwalker.within.data.di
 
+import com.rjwalker.within.data.repository.AgendaRepository
+import com.rjwalker.within.data.repository.HomeAgendaRepository
 import com.rjwalker.within.data.util.ConnectivityManagerNetworkMonitor
 import com.rjwalker.within.data.util.NetworkMonitor
 import com.rjwalker.within.data.util.TimeZoneBroadcastMonitor
@@ -19,5 +21,10 @@ abstract class WithinModule {
 
     @Binds
     internal abstract fun binds(impl: TimeZoneBroadcastMonitor): TimeZoneMonitor
+
+    @Binds
+    internal abstract fun bindsAgendaRepository(
+        agendaRepository: HomeAgendaRepository
+    ): AgendaRepository
 
 }

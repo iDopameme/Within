@@ -1,6 +1,7 @@
 package com.rjwalker.within.data.model
 
-data class AgendaData(
+data class Agenda(
+    val id: Int,
     val title: String,
     val description: String,
     val time: String,
