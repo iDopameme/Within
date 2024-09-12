@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <style name="Theme.Within" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Within.Nav">
+        <item name="android:navigationBarColor">
+            @android:color/transparent
+        </item>
+    </style>
 </resources>
