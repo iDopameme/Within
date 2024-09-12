@@ -7,7 +7,6 @@ import com.rjwalker.within.database.dao.AgendaDao
 import com.rjwalker.within.database.model.AgendaEntity
 import kotlinx.coroutines.test.runTest
 import org.junit.After
-import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
