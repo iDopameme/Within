@@ -1,7 +1,9 @@
 package com.rjwalker.within.data.di
 
 import com.rjwalker.within.data.repository.AgendaRepository
+import com.rjwalker.within.data.repository.DefaultUserDataRepository
 import com.rjwalker.within.data.repository.HomeAgendaRepository
+import com.rjwalker.within.data.repository.UserDataRepository
 import com.rjwalker.within.data.util.ConnectivityManagerNetworkMonitor
 import com.rjwalker.within.data.util.NetworkMonitor
 import com.rjwalker.within.data.util.TimeZoneBroadcastMonitor
@@ -26,5 +28,10 @@ abstract class WithinModule {
     internal abstract fun bindsAgendaRepository(
         agendaRepository: HomeAgendaRepository
     ): AgendaRepository
+
+    @Binds
+    internal abstract fun bindsUserDataRepository(
+        userDataRepository: DefaultUserDataRepository
+    ): UserDataRepository
 
 }

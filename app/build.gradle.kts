@@ -73,13 +73,18 @@ android {
 
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:4.26.1"
+        artifact = libs.protobuf.protoc.get().toString()
     }
 
     generateProtoTasks {
         all().forEach { task ->
             task.builtins {
-                create("java")
+                register("java") {
+                    option("lite")
+                }
+                register("kotlin") {
+                    option("lite")
+                }
             }
         }
     }
@@ -145,7 +150,7 @@ dependencies {
     implementation(libs.firebase.auth)
 
     // ProtoBuf
-    implementation(libs.google.protobuf.java)
+    implementation(libs.protobuf.kotlin.lite)
 
     // Hilt Navigation
     implementation(libs.hilt.navigation.compose)

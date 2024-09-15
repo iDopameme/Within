@@ -13,11 +13,14 @@ import androidx.compose.material.icons.rounded.Build
 import androidx.compose.material.icons.rounded.Create
 import androidx.compose.material.icons.rounded.Face
 import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.rounded.Settings
+import com.rjwalker.within.R
 
 object WithinIcons {
     val Add = Icons.Rounded.Add
     val Home = Icons.Rounded.Home
     val Fire = Icons.Rounded.Build
+    val Settings = Icons.Rounded.Settings
     val Tasks = Icons.AutoMirrored.Rounded.List
     val Journal = Icons.Rounded.Create
     val Friends = Icons.Rounded.Face
@@ -27,5 +30,8 @@ object WithinIcons {
     val JournalFilled = Icons.Filled.Create
     val TasksFilled = Icons.AutoMirrored.Filled.List
     val EnterArrow = Icons.AutoMirrored.Filled.ArrowForward
+    val Profile = Icons.Rounded.Face
+    val DarkMode = R.drawable.dark_mode_24px
+    val LightMode = R.drawable.light_mode_24px
 
 }

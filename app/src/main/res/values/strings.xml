@@ -1,12 +1,21 @@
 <resources>
     <string name="app_name">Within</string>
+
+    <!--  Bottom App Bar  -->
     <string name="login">Login</string>
     <string name="home">Home</string>
     <string name="journal">Journal</string>
     <string name="tasks">Tasks</string>
     <string name="ai">AI</string>
+
+    <!--  Account Strings  -->
+    <string name="account">Account</string>
+    <string name="logout">Logout</string>
     <string name="profile">Profile</string>
-    <string name="signup">Sign up</string>"
+    <string name="signup">Sign up</string>
+    <string name="signin">Sign in</string>
+    <string name="signup_signin">Sign up / Sign in</string>
+
     <string name="password">Password</string>
     <string name="settings">Settings</string>
     <string name="back">Back</string>
@@ -14,9 +23,19 @@
     <string name="username">Username</string>
     <string name="todays_agenda">Today\'s Agenda:</string>
     <string name="forgot_password">Forgot Password?</string>
+    <string name="show_onboarding">Show Onboarding</string>
     <string name="already_have_account">Already have an account?</string>
     <string name="needs_to_signup">Need to signup?</string>
     <string name="not_connected">You are not connected to the internet</string>
+    <string name="ok">OK</string>
+
+    <!-- Dark mode preferences -->
+    <string name="dark_mode_settings">Dark Mode Settings</string>
+    <string name="system_default">System Default</string>
+    <string name="light_mode">Light Mode</string>
+    <string name="dark_mode">Dark Mode</string>
+
+    <!--  Welcome   -->
     <string name="welcome_title">Welcome to Within!</string>"
     <string name="welcome_body_1">This app\'s main purpose is to become a productive tool for all to achieve any goal they set in life.</string>
     <string name="welcome_body_2">We accomplish this by creating supportive tools &amp; a supportive community where everyone can share their ideas to become the best version of themselves and to become the person of their dreams!</string>
