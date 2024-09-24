@@ -3,7 +3,10 @@ package com.rjwalker.within.datastore
 import androidx.datastore.core.DataStore
 import com.rjwalker.within.data.model.DarkThemeConfig
 import com.rjwalker.within.data.model.UserData
+import com.rjwalker.within.utils.TimeUtils.localDateToIsoString
+import com.rjwalker.within.utils.TimeUtils.stringToLocalDate
 import kotlinx.coroutines.flow.map
+import kotlinx.datetime.LocalDate
 import javax.inject.Inject
 
 class WithinPreferencesDataSource @Inject constructor(
@@ -12,6 +15,8 @@ class WithinPreferencesDataSource @Inject constructor(
     val userData = userPreferences.data
         .map {
             UserData(
+                name = it.userName,
+                birthday = stringToLocalDate(it.birthday),
                 showOnboarding = it.showOnboarding,
                 darkThemeConfig = when (it.darkThemeConfig) {
                     null,
@@ -24,6 +29,18 @@ class WithinPreferencesDataSource @Inject constructor(
                 }
             )
         }
+
+    suspend fun setUserName(userName: String) {
+        userPreferences.updateData {
+            it.copy { this.userName = userName }
+        }
+    }
+
+    suspend fun setBirthday(birthday: LocalDate) {
+        userPreferences.updateData {
+            it.copy { this.birthday = localDateToIsoString(birthday) }
+        }
+    }
 
     suspend fun setShowOnboarding(showOnboarding: Boolean) {
         userPreferences.updateData {

@@ -1,7 +1,7 @@
 package com.rjwalker.within.data.repository
 
 import com.google.firebase.auth.FirebaseAuth
-import com.rjwalker.within.network.Result
+import com.rjwalker.within.network.result.Result
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await

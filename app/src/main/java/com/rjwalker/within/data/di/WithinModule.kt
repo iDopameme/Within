@@ -3,6 +3,8 @@ package com.rjwalker.within.data.di
 import com.rjwalker.within.data.repository.AgendaRepository
 import com.rjwalker.within.data.repository.DefaultUserDataRepository
 import com.rjwalker.within.data.repository.HomeAgendaRepository
+import com.rjwalker.within.data.repository.HomeQuoteRepository
+import com.rjwalker.within.data.repository.QuoteRepository
 import com.rjwalker.within.data.repository.UserDataRepository
 import com.rjwalker.within.data.util.ConnectivityManagerNetworkMonitor
 import com.rjwalker.within.data.util.NetworkMonitor
@@ -34,4 +36,8 @@ abstract class WithinModule {
         userDataRepository: DefaultUserDataRepository
     ): UserDataRepository
 
+    @Binds
+    internal abstract fun bindsQuotesRepository(
+        quoteRepository: HomeQuoteRepository
+    ): QuoteRepository
 }

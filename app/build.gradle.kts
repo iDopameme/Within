@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.google.services)
     alias(libs.plugins.google.protobuf)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 androidComponents {
@@ -136,6 +137,14 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     debugImplementation(libs.androidx.ui.test.manifest)
     debugImplementation(libs.androidx.ui.tooling)
+
+    // ktor
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.client.logging)
+    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.serialization.kotlinx.protobuf)
+    implementation(libs.ktor.client.content.negotiation)
 
     // Dagger Hilt
     implementation(libs.dagger.hilt.android)

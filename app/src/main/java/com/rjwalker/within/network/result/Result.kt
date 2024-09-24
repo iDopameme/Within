@@ -1,4 +1,4 @@
-package com.rjwalker.within.network
+package com.rjwalker.within.network.result
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
