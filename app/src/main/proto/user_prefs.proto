@@ -8,4 +8,7 @@ option java_multiple_files = true;
 message UserPreferences {
   bool show_onboarding = 1;
   DarkThemeConfigProto dark_theme_config = 2;
+  string user_name = 3;
+  string birthday = 4;
+
 }

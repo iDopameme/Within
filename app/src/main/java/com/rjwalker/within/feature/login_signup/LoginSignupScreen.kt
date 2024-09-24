@@ -29,7 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.rjwalker.within.R
-import com.rjwalker.within.network.Result
+import com.rjwalker.within.network.result.Result
 
 
 private const val TAG = "LoginSignUpRoute"
