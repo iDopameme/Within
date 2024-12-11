@@ -1,20 +1,20 @@
 package com.rjwalker.within.network.model
 
-import android.os.Parcelable
+import com.rjwalker.within.data.model.Quote
 import com.rjwalker.within.database.model.QuoteEntity
-import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
 
-@Parcelize
+@Serializable
 data class NetworkQuote(
-    val quote: String,
-    val author: String,
-    val charLength: String,
-    val htmlQuote: String,
-) : Parcelable
-
-fun NetworkQuote.asEntity() = QuoteEntity(
-    quote = quote,
-    author = author,
-    charLength = charLength,
-    htmlQuote = htmlQuote
+    val q: String,
+    val a: String,
+    val h: String,
 )
+
+fun NetworkQuote.toQuote(): Quote {
+    return Quote(
+        quote = q,
+        author = a,
+        htmlQuote = h
+    )
+}

@@ -36,7 +36,7 @@ class WithinPreferencesDataSource @Inject constructor(
         }
     }
 
-    suspend fun setBirthday(birthday: LocalDate) {
+    suspend fun setBirthday(birthday: LocalDate?) {
         userPreferences.updateData {
             it.copy { this.birthday = localDateToIsoString(birthday) }
         }

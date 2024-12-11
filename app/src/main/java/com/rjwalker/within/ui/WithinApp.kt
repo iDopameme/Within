@@ -41,6 +41,7 @@ import com.rjwalker.within.design.components.WithinNavigationBarItem
 import com.rjwalker.within.design.components.WithinTopAppBar
 import com.rjwalker.within.design.icons.WithinIcons
 import com.rjwalker.within.feature.settings.SettingsDialog
+import com.rjwalker.within.navigation.WithinNavHost
 import kotlinx.coroutines.launch
 
 @Composable
@@ -166,10 +167,9 @@ internal fun WithinApp(
                     .fillMaxSize()
                     .padding(padding)
             ) {
-                val destination = appState.currentTopLevelDestination
-
-
-                //WelcomeComponent(isUserNew = true)
+                WithinNavHost(
+                    withingAppState = appState,
+                )
             }
         }
     }

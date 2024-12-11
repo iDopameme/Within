@@ -16,7 +16,7 @@ internal class DefaultUserDataRepository @Inject constructor(
     override suspend fun setUserName(name: String) =
         withinPreferencesDataSource.setUserName(name)
 
-    override suspend fun setBirthday(birthday: LocalDate) =
+    override suspend fun setBirthday(birthday: LocalDate?) =
         withinPreferencesDataSource.setBirthday(birthday)
 
     override suspend fun setShowOnboarding(showOnboarding: Boolean) =

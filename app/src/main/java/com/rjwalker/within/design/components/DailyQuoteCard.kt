@@ -1,7 +1,9 @@
 package com.rjwalker.within.design.components
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -30,25 +32,26 @@ fun DailyQuoteCard(
             containerColor = MaterialTheme.colorScheme.surfaceVariant
         ),
         modifier = Modifier
-            .size(width = 240.dp, height = 100.dp)
+            .fillMaxWidth()
+            .wrapContentHeight()
     ) {
         Text(
             text = dayOfWeek,
             modifier = Modifier
                 .padding(8.dp),
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Start
         )
         Text(
             text = author,
             modifier = Modifier
                 .padding(8.dp),
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Start
         )
         Text(
             text = quote,
             modifier = Modifier
                 .padding(8.dp),
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Start
         )
     }
 }

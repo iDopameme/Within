@@ -5,6 +5,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface QuoteRepository {
 
+    fun getRandomQuote(): Flow<Quote>
+
     fun getQuote(id: Int): Flow<Quote>
 
     fun getQuotes(): Flow<List<Quote>>

@@ -9,7 +9,8 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.google.services)
     alias(libs.plugins.google.protobuf)
-    alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.androidx.room)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 androidComponents {
@@ -21,6 +22,10 @@ androidComponents {
             }
         }
     }
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
 }
 
 android {
@@ -56,14 +61,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_19
+        targetCompatibility = JavaVersion.VERSION_19
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "19"
     }
     buildFeatures {
         compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.15"
     }
     packaging {
         resources {
@@ -131,6 +139,11 @@ dependencies {
     // Navigation
     implementation(libs.androidx.navigation.compose)
 
+    // Room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+
     // Compose UI
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
@@ -149,6 +162,7 @@ dependencies {
     // Dagger Hilt
     implementation(libs.dagger.hilt.android)
     implementation(libs.dagger.hilt.testing)
+    ksp(libs.dagger.hilt.compiler)
 
     // Room Database
     implementation(libs.room.ktx)
@@ -173,17 +187,14 @@ dependencies {
 
     // Kotlin
     implementation(libs.kotlin.stdlib)
+    implementation(libs.kotlinx.metadata.jvm)
+    implementation(libs.kotlinx.serialization.json)
 
     // Compose BOM
     implementation(platform(libs.androidx.compose.bom))
 
     // Firebase BOM
     implementation(platform(libs.firebase.bom))
-
-    // KSP
-    ksp(libs.dagger.hilt.android)
-    ksp(libs.dagger.hilt.compiler)
-    ksp(libs.room.compiler)
 
     testImplementation(libs.room.testing)
     testImplementation(libs.mockk)

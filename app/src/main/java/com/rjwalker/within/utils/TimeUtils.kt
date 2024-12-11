@@ -7,11 +7,12 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
+import java.time.format.DateTimeParseException
 
 object TimeUtils {
 
-    fun localDateToIsoString(localDate: LocalDate): String =
-        LocalDate.Formats.ISO.format(localDate)
+    fun localDateToIsoString(localDate: LocalDate?): String =
+        LocalDate.Formats.ISO.format(localDate!!)
 
     fun isoStringToLocalDate(isoString: String): LocalDateTime =
         LocalDateTime.parse(isoString)
@@ -28,7 +29,12 @@ object TimeUtils {
     fun getLocalDateTimeInTimeZone(timeZone: TimeZone): LocalDateTime =
         Clock.System.now().toLocalDateTime(timeZone)
 
-    fun stringToLocalDate(string: String): LocalDate =
-        LocalDate.parse(string)
+    fun stringToLocalDate(string: String): LocalDate? {
+        return if (string.isBlank()) {
+            null
+        } else {
+            LocalDate.parse(string)
+        }
+    }
 
 }
