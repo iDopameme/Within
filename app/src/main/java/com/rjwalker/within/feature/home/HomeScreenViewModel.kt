@@ -1,14 +1,14 @@
 package com.rjwalker.within.feature.home
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rjwalker.within.data.model.Quote
 import com.rjwalker.within.data.repository.QuoteRepository
 import com.rjwalker.within.data.repository.UserDataRepository
+import com.rjwalker.within.data.states.QuoteUiState
 import com.rjwalker.within.database.model.asExternalModel
 import com.rjwalker.within.network.WithinNetworkDataSource
-import com.rjwalker.within.network.model.NetworkQuote
-import com.rjwalker.within.network.model.asEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,7 +24,6 @@ import javax.inject.Inject
 class HomeScreenViewModel @Inject constructor(
     private val userDataRepository: UserDataRepository,
     private val quoteRepository: QuoteRepository,
-    private val network: WithinNetworkDataSource,
 ) : ViewModel() {
 
     private val _shouldShowOnboarding: Flow<Boolean> =
@@ -39,24 +38,34 @@ class HomeScreenViewModel @Inject constructor(
     private val _randomQuote = MutableStateFlow<QuoteUiState>(QuoteUiState.Empty)
     val randomQuote: StateFlow<QuoteUiState> = _randomQuote.asStateFlow()
 
-    fun fetchRandomQuote() {
-        viewModelScope.launch {
-            _randomQuote.value = QuoteUiState.Loading
+    init {
+        fetchRandomQuote()
+    }
 
+    private fun fetchRandomQuote() {
+        _randomQuote.value = QuoteUiState.Loading
+        Log.d(TAG, "Quote Loading...")
+
+        viewModelScope.launch {
             try {
-                val networkQuote = network.getRandomQuote()
-                _randomQuote.value = QuoteUiState.Success(networkQuote.asEntity().asExternalModel())
+                quoteRepository.getRandomQuote()
+                    .collect { quote ->
+                        if (quote.quote.isBlank()) {
+                            _randomQuote.value = QuoteUiState.Empty
+                            Log.d(TAG, "Quote Empty")
+                        } else {
+                            _randomQuote.value = QuoteUiState.Success(quote)
+                            Log.d(TAG, "Quote Success")
+                        }
+                    }
             } catch (e: Exception) {
-                _randomQuote.value = QuoteUiState.Error
+                _randomQuote.value = QuoteUiState.Error(e.message)
+                Log.d(TAG, "Quote Error ${e.message}")
             }
         }
-
     }
-}
 
-sealed interface QuoteUiState {
-    data class Success(val quote: Quote) : QuoteUiState
-    data object Error : QuoteUiState
-    data object Loading : QuoteUiState
-    data object Empty : QuoteUiState
+    companion object {
+        private const val TAG = "HomeScreenViewModel"
+    }
 }

@@ -4,6 +4,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
+import com.rjwalker.within.feature.profile.ProfileScreen
 
 const val PROFILE_ROUTE = "profile_route"
 
@@ -13,6 +14,6 @@ fun NavGraphBuilder.profileScreen() {
     composable(
         route = PROFILE_ROUTE
     ) {
-
+        ProfileScreen()
     }
 }

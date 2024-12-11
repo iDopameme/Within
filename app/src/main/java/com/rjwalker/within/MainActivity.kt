@@ -37,7 +37,6 @@ class MainActivity : ComponentActivity() {
                 timeZoneMonitor = timeZoneMonitor
             )
 
-
             val currentTimeZone by appState.currentTimeZone.collectAsStateWithLifecycle()
 
             CompositionLocalProvider(

@@ -8,5 +8,5 @@ enum class TopLevelDestination(
     HOME(titleText = R.string.home),
     PROFILE(titleText = R.string.profile),
     LOGIN(titleText = R.string.login),
-    //AI(R.string.ai),
+    JOURNAL(R.string.journal),
 }

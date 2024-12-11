@@ -22,31 +22,13 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-internal class KtorWithinNetwork @Inject constructor(): WithinNetworkDataSource {
+internal class KtorWithinNetwork @Inject constructor(
+    ktorHttpClient: HttpClient
+): WithinNetworkDataSource {
 
-    @OptIn(ExperimentalSerializationApi::class)
-    private val networkApi = HttpClient(CIO) {
-        install(Logging) {
-            logger = Logger.ANDROID
-            level = LogLevel.HEADERS
-        }
-        install(HttpTimeout) {
-            requestTimeoutMillis = 5000
-        }
+    private val networkApi = ktorHttpClient
 
-        install(ContentNegotiation) {
-            json(Json {
-                prettyPrint = true
-                isLenient = true
-            })
-
-            protobuf(ProtoBuf {
-                encodeDefaults = true
-            })
-        }
-    }
-
-    override suspend fun getRandomQuote(): NetworkQuote {
+    override suspend fun getRandomQuote(): List<NetworkQuote> {
         val response = networkApi.request("https://zenquotes.io/api/today") {
             method = HttpMethod.Get
         }

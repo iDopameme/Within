@@ -14,6 +14,8 @@ import com.rjwalker.within.data.util.NetworkMonitor
 import com.rjwalker.within.data.util.TimeZoneMonitor
 import com.rjwalker.within.feature.home.navigation.HOME_ROUTE
 import com.rjwalker.within.feature.home.navigation.navigateToHome
+import com.rjwalker.within.feature.journal.navigation.JOURNAL_ROUTE
+import com.rjwalker.within.feature.journal.navigation.navigateToJournal
 import com.rjwalker.within.feature.login_signup.navigation.LOGIN_SIGNUP_ROUTE
 import com.rjwalker.within.feature.login_signup.navigation.navigateToLogin
 import com.rjwalker.within.feature.profile.navigation.PROFILE_ROUTE
@@ -63,6 +65,7 @@ class WithinAppState (
             HOME_ROUTE -> TopLevelDestination.HOME
             PROFILE_ROUTE -> TopLevelDestination.PROFILE
             LOGIN_SIGNUP_ROUTE -> TopLevelDestination.LOGIN
+            JOURNAL_ROUTE -> TopLevelDestination.JOURNAL
             else -> null
         }
 
@@ -83,9 +86,9 @@ class WithinAppState (
             TimeZone.currentSystemDefault()
         )
 
-    fun navigateToTopLevelDestination(toplevelDestination: TopLevelDestination) {
-        trace("Navigation: ${toplevelDestination.name}") {
-            val topLevelDestination = navOptions {
+    fun navigateToTopLevelDestination(topLevelDestination: TopLevelDestination) {
+        trace("Navigation: ${topLevelDestination.name}") {
+            val topLevelNavOptions = navOptions {
                 popUpTo(navController.graph.findStartDestination().id) {
                     saveState = true
                 }
@@ -95,10 +98,11 @@ class WithinAppState (
                 restoreState = true
             }
 
-            when (toplevelDestination) {
-                TopLevelDestination.HOME -> navController.navigateToHome(topLevelDestination)
-                TopLevelDestination.PROFILE -> navController.navigateToProfile(topLevelDestination)
-                TopLevelDestination.LOGIN -> navController.navigateToLogin(topLevelDestination)
+            when (topLevelDestination) {
+                TopLevelDestination.HOME -> navController.navigateToHome(topLevelNavOptions)
+                TopLevelDestination.PROFILE -> navController.navigateToProfile(topLevelNavOptions)
+                TopLevelDestination.JOURNAL -> navController.navigateToJournal(topLevelNavOptions)
+                TopLevelDestination.LOGIN -> navController.navigateToLogin(topLevelNavOptions)
             }
         }
     }

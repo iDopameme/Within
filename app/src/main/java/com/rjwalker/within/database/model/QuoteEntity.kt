@@ -9,14 +9,11 @@ data class QuoteEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val quote: String,
     val author: String,
-    val charLength: String,
     val htmlQuote: String
 )
 
 fun QuoteEntity.asExternalModel() = Quote(
-    id = id,
     quote = quote,
     author = author,
-    charLength = charLength,
     htmlQuote = htmlQuote
 )

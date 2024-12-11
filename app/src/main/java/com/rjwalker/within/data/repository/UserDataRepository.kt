@@ -11,7 +11,7 @@ interface UserDataRepository {
 
     suspend fun setUserName(name: String)
 
-    suspend fun setBirthday(birthday: LocalDate)
+    suspend fun setBirthday(birthday: LocalDate?)
 
     suspend fun setShowOnboarding(showOnboarding: Boolean)
 
