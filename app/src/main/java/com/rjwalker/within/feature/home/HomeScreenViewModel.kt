@@ -22,7 +22,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
-    private val userDataRepository: UserDataRepository,
+    userDataRepository: UserDataRepository,
     private val quoteRepository: QuoteRepository,
 ) : ViewModel() {
 

@@ -5,15 +5,14 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.rjwalker.within.feature.tasks.TasksScreen
+import kotlinx.serialization.Serializable
 
-const val TASKS_ROUTE = "tasks_route"
+@Serializable data object TasksRoute
 
-fun NavController.navigateToTasks(navOptions: NavOptions) = navigate(TASKS_ROUTE, navOptions)
+fun NavController.navigateToTasks(navOptions: NavOptions) = navigate(route = TasksRoute, navOptions)
 
 fun NavGraphBuilder.tasksScreen() {
-    composable(
-        route = TASKS_ROUTE
-    ) {
+    composable<TasksRoute> {
         TasksScreen()
     }
 }

@@ -5,15 +5,14 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.rjwalker.within.feature.journal.JournalScreen
+import kotlinx.serialization.Serializable
 
-const val JOURNAL_ROUTE = "journal_route"
+@Serializable data object JournalRoute
 
-fun NavController.navigateToJournal(navOptions: NavOptions) = navigate(JOURNAL_ROUTE, navOptions)
+fun NavController.navigateToJournal(navOptions: NavOptions) = navigate(route = JournalRoute, navOptions)
 
 fun NavGraphBuilder.journalScreen() {
-    composable(
-        route = JOURNAL_ROUTE
-    ) {
+    composable<JournalRoute>{
         JournalScreen()
     }
 }
