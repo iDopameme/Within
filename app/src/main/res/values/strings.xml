@@ -8,6 +8,11 @@
     <string name="tasks">Tasks</string>
     <string name="ai">AI</string>
 
+    <!--    Tasks Strings-->
+    <string name="add_task">Add Task</string>
+    <string name="new_task">New Task</string>
+    <string name="confirm">Confirm</string>
+
     <!--  Account Strings  -->
     <string name="account">Account</string>
     <string name="logout">Logout</string>
@@ -39,5 +44,8 @@
     <string name="welcome_title">Welcome to Within!</string>"
     <string name="welcome_body_1">This app\'s main purpose is to become a productive tool for all to achieve any goal they set in life.</string>
     <string name="welcome_body_2">We accomplish this by creating supportive tools &amp; a supportive community where everyone can share their ideas to become the best version of themselves and to become the person of their dreams!</string>
+
+    <!-- Debug/Preview Strings -->
+    <string name="write_today">Write in your journal today</string>
 
 </resources>
