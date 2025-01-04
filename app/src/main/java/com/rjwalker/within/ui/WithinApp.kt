@@ -1,5 +1,6 @@
 package com.rjwalker.within.ui
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -34,6 +35,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hasRoute
+import androidx.navigation.NavDestination.Companion.hierarchy
 import com.rjwalker.within.R
 import com.rjwalker.within.design.components.WithinBackground
 import com.rjwalker.within.design.components.WithinNavigationBar
@@ -43,6 +47,7 @@ import com.rjwalker.within.design.icons.WithinIcons
 import com.rjwalker.within.feature.settings.SettingsDialog
 import com.rjwalker.within.navigation.WithinNavHost
 import kotlinx.coroutines.launch
+import kotlin.reflect.KClass
 
 @Composable
 fun WithinApp(
@@ -92,19 +97,6 @@ internal fun WithinApp(
     val currentDestination = appState.currentDestination
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
-    var selectedItem by rememberSaveable { mutableIntStateOf(0) }
-
-    val items = listOf(R.string.home, R.string.tasks, R.string.journal)
-    val icons = listOf(
-        WithinIcons.Home,
-        WithinIcons.Tasks,
-        WithinIcons.Journal
-    )
-    val selectedIcons = listOf(
-        WithinIcons.HomeFilled,
-        WithinIcons.TasksFilled,
-        WithinIcons.JournalFilled
-    )
 
     if (showSettingsDialog) SettingsDialog(onDismiss = { onSettingsDismissed() })
 
@@ -120,6 +112,9 @@ internal fun WithinApp(
             }
         }
     ) {
+
+        val destination = appState.currentTopLevelDestination
+
         Scaffold(
             topBar = {
                 WithinTopAppBar(
@@ -140,23 +135,24 @@ internal fun WithinApp(
             },
             bottomBar = {
                 WithinNavigationBar{
-                    items.forEachIndexed { index, item ->
+                    appState.topLevelDestinations.forEach { destination ->
+                        val selected = currentDestination.isRouteInHierarchy(destination.baseRoute)
                         WithinNavigationBarItem(
                             icon = {
                                 Icon(
-                                    imageVector = icons[index],
-                                    contentDescription = item.toString()
+                                    imageVector = destination.unselectedIcon,
+                                    contentDescription = null
                                 )
                             },
                             selectedIcon = {
                                 Icon(
-                                    imageVector = selectedIcons[index],
-                                    contentDescription = item.toString()
+                                    imageVector = destination.selectedIcon,
+                                    contentDescription = null
                                 )
                             },
-                            label = { Text(stringResource(id = item)) },
-                            selected = selectedItem == index,
-                            onClick = { selectedItem = index }
+                            label = { Text(stringResource(destination.titleText)) },
+                            selected = selected,
+                            onClick = { appState.navigateToTopLevelDestination(destination) }
                         )
                     }
                 }
@@ -174,3 +170,8 @@ internal fun WithinApp(
         }
     }
 }
+
+private fun NavDestination?.isRouteInHierarchy(route: KClass<*>) =
+    this?.hierarchy?.any {
+        it.hasRoute(route)
+    } ?: false

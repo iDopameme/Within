@@ -12,9 +12,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable data object HomeBaseRoute
 
-const val HOME_ROUTE = "home_route"
-
-fun NavController.navigateToHome(navOptions: NavOptions) = navigate(HOME_ROUTE, navOptions)
+fun NavController.navigateToHome(navOptions: NavOptions) = navigate(route = HomeBaseRoute, navOptions)
 
 fun NavGraphBuilder.homeScreen(
     onMenuItemClick: (String) -> Unit = {}
