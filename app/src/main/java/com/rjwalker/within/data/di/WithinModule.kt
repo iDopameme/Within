@@ -40,4 +40,9 @@ abstract class WithinModule {
     internal abstract fun bindsQuotesRepository(
         quoteRepository: HomeQuoteRepository
     ): QuoteRepository
+
+//    @Binds
+//    internal abstract fun taskHomeRepository(
+//        taskHomeRepository: TaskHomeRepository
+//    ): TaskRepository
 }

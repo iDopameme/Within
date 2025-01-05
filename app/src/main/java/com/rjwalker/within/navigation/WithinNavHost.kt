@@ -8,7 +8,6 @@ import com.rjwalker.within.feature.home.navigation.HomeBaseRoute
 import com.rjwalker.within.feature.home.navigation.homeScreen
 import com.rjwalker.within.feature.journal.navigation.journalScreen
 import com.rjwalker.within.feature.profile.ProfileScreen
-import com.rjwalker.within.feature.tasks.navigation.tasksScreen
 import com.rjwalker.within.ui.WithinAppState
 
 @Composable
@@ -23,7 +22,7 @@ fun WithinNavHost(
         modifier = modifier
     ) {
         homeScreen()
-        tasksScreen()
+//        tasksScreen()
         journalScreen()
         composable(Screen.Profile.route) { ProfileScreen() }
     }

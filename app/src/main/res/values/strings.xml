@@ -11,7 +11,12 @@
     <!--    Tasks Strings-->
     <string name="add_task">Add Task</string>
     <string name="new_task">New Task</string>
+    <string name="task_title">Task Title</string>
+    <string name="task_desc">Task Description</string>
     <string name="confirm">Confirm</string>
+    <string name="no_tasks">No Tasks</string>
+    <string name="no_tasks_desc">Add some tasks to get started!</string>
+    <string name="tasks_load_error">Error loading tasks! \n%1$s</string>
 
     <!--  Account Strings  -->
     <string name="account">Account</string>

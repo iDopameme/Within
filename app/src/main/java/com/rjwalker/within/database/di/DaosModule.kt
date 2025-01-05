@@ -21,4 +21,10 @@ internal object DaosModule {
         database: WithinDatabase,
     ): QuoteDao = database.quoteDao()
 
+//    @Provides
+//    fun providesTaskDao(
+//        database: WithinDatabase,
+//    ): TaskDao = database.taskDao()
+
+
 }

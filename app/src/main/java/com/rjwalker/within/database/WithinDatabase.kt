@@ -10,11 +10,12 @@ import com.rjwalker.within.database.model.QuoteEntity
 
 @Database(entities = [
     AgendaEntity::class,
-    QuoteEntity::class
+    QuoteEntity::class,
     ],
     version = 2,
     autoMigrations = [
-        AutoMigration(from = 1, to = 2)
+        AutoMigration(from = 1, to = 2),
+
     ],
     exportSchema = true
 )

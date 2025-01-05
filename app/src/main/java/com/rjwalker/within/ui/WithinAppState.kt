@@ -15,7 +15,6 @@ import com.rjwalker.within.data.util.NetworkMonitor
 import com.rjwalker.within.data.util.TimeZoneMonitor
 import com.rjwalker.within.feature.home.navigation.navigateToHome
 import com.rjwalker.within.feature.journal.navigation.navigateToJournal
-import com.rjwalker.within.feature.tasks.navigation.navigateToTasks
 import com.rjwalker.within.navigation.TopLevelDestination
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
@@ -95,7 +94,7 @@ class WithinAppState (
             when (topLevelDestination) {
                 TopLevelDestination.HOME -> navController.navigateToHome(topLevelNavOptions)
                 TopLevelDestination.JOURNAL -> navController.navigateToJournal(topLevelNavOptions)
-                TopLevelDestination.TASKS -> navController.navigateToTasks(topLevelNavOptions)
+//                TopLevelDestination.TASKS -> navController.navigateToTasks(topLevelNavOptions)
             }
         }
     }
