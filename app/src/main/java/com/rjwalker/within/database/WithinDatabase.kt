@@ -5,12 +5,15 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.rjwalker.within.database.dao.AgendaDao
 import com.rjwalker.within.database.dao.QuoteDao
+import com.rjwalker.within.database.dao.TaskDao
 import com.rjwalker.within.database.model.AgendaEntity
 import com.rjwalker.within.database.model.QuoteEntity
+import com.rjwalker.within.database.model.TaskEntity
 
 @Database(entities = [
     AgendaEntity::class,
     QuoteEntity::class,
+    TaskEntity::class
     ],
     version = 2,
     autoMigrations = [
@@ -23,4 +26,5 @@ import com.rjwalker.within.database.model.QuoteEntity
 internal abstract class WithinDatabase : RoomDatabase() {
     abstract fun agendaDao(): AgendaDao
     abstract fun quoteDao(): QuoteDao
+    abstract fun taskDao(): TaskDao
 }

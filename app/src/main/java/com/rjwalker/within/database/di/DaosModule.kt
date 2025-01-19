@@ -3,6 +3,7 @@ package com.rjwalker.within.database.di
 import com.rjwalker.within.database.WithinDatabase
 import com.rjwalker.within.database.dao.AgendaDao
 import com.rjwalker.within.database.dao.QuoteDao
+import com.rjwalker.within.database.dao.TaskDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,10 +22,10 @@ internal object DaosModule {
         database: WithinDatabase,
     ): QuoteDao = database.quoteDao()
 
-//    @Provides
-//    fun providesTaskDao(
-//        database: WithinDatabase,
-//    ): TaskDao = database.taskDao()
+    @Provides
+    fun providesTaskDao(
+        database: WithinDatabase,
+    ): TaskDao = database.taskDao()
 
 
 }
